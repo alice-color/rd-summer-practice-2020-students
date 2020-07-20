@@ -399,7 +399,8 @@ $imgSwitch
                 if (minutes < 10) {
                     minutes = "0" + minutes;
                 }
-                utils.reWriteDomElement(this.game.$switchTimer,`<text class="lead text-center timer" id="switchTimer">${timerState}'>${minutes}:${seconds}</text>`);  
+                utils.reWriteDomElement(this.game.$switchTimer, `<span class='${timerState}'>${minutes}:${seconds}</span>`);
+               // utils.reWriteDomElement(this.game.$switchTimer,`<text class="lead text-center timer" id="switchTimer">${timerState}'>${minutes}:${seconds}</text>`);  
                         //`<span class='${timerState}'>${minutes}:${seconds}</span>`);
             };
             GameView.prototype.getPlayer = function (player) {
@@ -472,42 +473,24 @@ $imgSwitch
                      *    для добавление класса можно использовать utils.addClasses($el,'hidden')
                      *    для удаления класса можно использовать utils.removeClasses($el,'hidden')
                      */
-                    if (status === GameApi.GameStatus.canceled || status === GameApi.GameStatus.finished) {
+                    if (isOwner) {
+                        utils.removeClasses($btnStart, 'hidden');
+                        utils.removeClasses($btnCancel, 'hidden');
+                    } else {
                         utils.addClasses($btnStart, 'hidden');
-                        utils.addClasses($btnLeave, 'hidden');
-                        utils.addClasses($btnPause, 'hidden');
-                        utils.addClasses($btnCancel, 'hidden');
-                        utils.addClasses($btnConnect, 'hidden');
-                        utils.addClasses($btnConnectThief, 'hidden');
-                        utils.addClasses($btnConnectPolice, 'hidden');
-                        return;
+                        if (isAdmin) {
+                            utils.removeClasses($btnCancel, 'hidden')
+                        } else {
+                            utils.addClasses($btnCancel, 'hidden')
                         }
+                    }
                     // ...
                 }
                 /**
                  * TODO: Task 10. Проинициализируйте состояние кнопок, для статусов
                  *      GameApi.GameStatus.canceled и GameApi.GameStatus.finished
                  */
-                if (
-                    this.state.status === GameApi.GameStatus.open ||
-                    this.state.status === GameApi.GameStatus.ready
-                    ) {
-                    utils.addClasses($btnPause, 'hidden');
-                    initBtnsStartCancel();
-                    
-                    if (connected) {
-                    utils.removeClasses($btnLeave, 'hidden');
-                    utils.addClasses($btnConnect, 'hidden');
-                    utils.addClasses($btnConnectThief, 'hidden');
-                    utils.addClasses($btnConnectPolice, 'hidden');
-                    } else {
-                    utils.addClasses($btnLeave, 'hidden');
-                    utils.removeClasses($btnConnect, 'hidden');
-                    utils.removeClasses($btnConnectThief, 'hidden');
-                    utils.removeClasses($btnConnectPolice, 'hidden');
-                    }
-                    return;
-                    }
+               
                  
                 if (status === GameApi.GameStatus.canceled || status === GameApi.GameStatus.finished) {
                     // ...
@@ -555,7 +538,7 @@ $imgSwitch
                     this.state.status === GameApi.GameStatus.staring ||
                     this.state.status === GameApi.GameStatus.inProcess
                 ){
-                    utils.addClasses($btnStart,'hidden');
+                    utils.removeClasses($btnStart,'hidden');
                     utils.addClasses($btnLeave,'hidden');
                     utils.addClasses($btnConnect,'hidden');
                     utils.addClasses($btnConnectPolice,'hidden');
