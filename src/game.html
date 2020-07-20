@@ -17,24 +17,24 @@
 <body>
 <!-- TODO: Task 0. Построить вёрстку приложения по макету
           используя для сетки bootstrap -->
-    <div class="paenl mypanel">
+    <div class="paenl mypanel" id="game">
 
-        <header class="navbar navbar-inverse">
-            <p class="navbar-text">
+        <header class="navbar navbar-inverse" id="gameCaption">
+            <!--<p class="navbar-text">
                 
-                <span class="label label-warning" id="gameCaption">
+                <span class="label label-warning" >
                     
                 </span>
-            </p> 
+            </p> -->
         </header>
 
         <main>
             <text class="lead text-center timer" id="switchTimer">00:00</text>
-            <div class="container" id="game">
+            <div class="container" >
                 <div class="row" >
                     <div class="col-md-2 gr_police" id = "team1">
                         <ul class="list-group" >
-                            <li class="list-group-item police" id = "team1Caption">Команда полицейских</li>
+                            <li class="list-group-item police" id = "team1Caption"></li>
                             <li class="list-group-item police_life">Жизни
                                 <span class="badge badge-primary badge-pill" id="team1Lives">0</span>
                             </li>
@@ -68,13 +68,29 @@
 
         <footer>
             <div class="btn-group btn" role="group">
-                <button class="btn btn-success" id="btnGameList" > К списку игр </button>
-                <button class="btn btn-success" id="btnStart"> Начать игру </button>
-                <button class="btn btn-danger" id="btnLeave" > Покинуть игру </button>
-                <button class="btn btn-danger" id="btnCancel"  > Прервать игру </button>
+                <button type="button" class="btn btn-info" id="btnGameList" > К списку игр </button>
+                <button type="button" class="hidden btn btn-success" id="btnStart"> Начать игру </button>
+                <button type="button" class="hidden btn btn-default" id="btnLeave" > Покинуть игру </button>
+                <button type="button" class="hidden btn btn-danger" id="btnCancel"  > Прервать игру </button>
+                <button id="btnConnect" class="hidden btn btn-primary">Подключиться к игре(случайно)</button>
+                <button id="btnConnectPolice" class="hidden btn btn-primary">Подключиться к полиции</button>
+                <button id="btnConnectThief" class="hidden btn btn-primary">Подключиться к мошенникам</button>
+                <button id="btnPause" class="hidden btn btn-primary">Пауза</button>
             </div>
         </footer>
        
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="loadError"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="loading"></div>
+        </div>
     </div>
 
         <div class="hidden">
